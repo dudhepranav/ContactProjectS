@@ -38,15 +38,28 @@ public class Controller {
 	}
 	
 	
+//	@CrossOrigin(origins = "http://localhost:3001/")
+//	@GetMapping("/contacts/{var}")
+//	public ResponseEntity< List<Contact>> getContactByVar(@PathVariable String var) {
+//		
+//		if( this.contactService.getContactByName(var).size() <= 0) {
+//			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+//	
+//		}
+//		return ResponseEntity.of(Optional.of(this.contactService.getContactByName(var)));
+//		
+////		return contactService.getContactByName(var);
+//	}
+//	
 	@CrossOrigin(origins = "http://localhost:3001/")
 	@GetMapping("/contacts/{var}")
-	public ResponseEntity< List<Contact>> getContactByVar(@PathVariable String var) {
+	public ResponseEntity<Contact> getContactByVar(@PathVariable String var) {
 		
 		if( this.contactService.getContactByName(var).size() <= 0) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 	
 		}
-		return ResponseEntity.of(Optional.of(this.contactService.getContactByName(var)));
+		return ResponseEntity.of(Optional.of(this.contactService.getContactByName(var).get(0)));
 		
 //		return contactService.getContactByName(var);
 	}
